@@ -6,75 +6,45 @@ jobs:
 
 # add pipeline workflow
 
-# manifest gen
-  - name: man-sample
+# manifest gen for VISUALIZER
+  - name: man-sample-gke
     type: manifest
     steps:
-      - IN: img-sample
-        versionName: master.87
-      - IN: img-opts-sample
+      - IN: img-sample-gcr
+      - IN: img-opts-sample-test-gke
       - TASK: managed
 
 # TEST deployment to Amazon ECS
-  - name: ecs-deploy-test-sample
+  - name: gke-deploy-test-sample
     type: deploy
     steps:
-      - IN: man-sample
-      - IN: params-sample-test
-      - IN: env-test-ecs
-      - IN: trigger-sample-test
-      - IN: alb-demo-test
-        applyTo:
-          - manifest: man-sample
-            image: img-sample
-            port: 80
+      - IN: man-sample-gke
+      - IN: params-sample-test-gke
+      - IN: trigger-sample-test-gke
+      - IN: env-gke
       - TASK: managed
 
 # Create release for PROD
-  - name: release-sample
+  - name: release-sample-gke
     type: release
     steps:
-      - IN: ver-sample
+      - IN: ver-sample-gke
         switch: off
-      - IN: ecs-deploy-test-sample
+      - IN: gke-deploy-test-sample
         switch: off
-      - IN: trigger-release-prod
+      - IN: trigger-release-prod-gke
       - TASK:   managed
         bump: patch
 
 # PROD deployment to Amazon ECS
-  - name: ecs-deploy-prod-sample
+  - name: gke-deploy-prod-sample
     type: deploy
     steps:
-      - IN: release-sample
+      - IN: release-sample-gke
         switch: off
-        # versionName: v1.0.1
-      - IN: params-sample-prod
-      - IN: trigger-sample-prod
-      - IN: replicas-sample-prod
-      - IN: alb-demo-prod
-        applyTo:
-          - manifest: man-sample
-            image: img-sample
-            port: 80
-      - IN: env-test-ecs
+      - IN: img-opts-sample-prod-gke
+      - IN: params-sample-prod-gke
+      - IN: replicas-sample-prod-gke
+      - IN: trigger-sample-prod-gke
+      - IN: env-gke
       - TASK: managed
-
-#################################
-
-# # manifest gen
-#   - name: man-sample-triton
-#     type: manifest
-#     steps:
-#       - IN: img-sample
-#       - IN: img-opts-sample-triton
-#       - TASK: managed
-#
-# # TEST deployment for VISUALIZER to Joyent Triton
-#   - name: test-triton-sample
-#     type: deploy
-#     steps:
-#       - IN: man-sample-triton
-#       - IN: trigger-sample-test
-#       - IN: env-test-triton
-#       - TASK: managed
