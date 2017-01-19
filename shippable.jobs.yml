@@ -20,7 +20,6 @@ jobs:
     steps:
       - IN: man-sample-gke
       - IN: params-sample-test-gke
-      - IN: trigger-sample-test-gke
       - IN: env-gke
       - TASK: managed
 
@@ -41,10 +40,8 @@ jobs:
     type: deploy
     steps:
       - IN: release-sample-gke
-        switch: off
       - IN: img-opts-sample-prod-gke
       - IN: params-sample-prod-gke
       - IN: replicas-sample-prod-gke
-      - IN: trigger-sample-prod-gke
       - IN: env-gke
       - TASK: managed
