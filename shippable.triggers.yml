@@ -1,5 +1,5 @@
 triggers:
-#  - name: trigger-release-prod-gke
-#    type: trigger
-#    version:
-#      message: 'trigger to create release'
+  - name: trigger-release-prod-gke
+    type: trigger
+    version:
+      message: 'trigger to create release'
