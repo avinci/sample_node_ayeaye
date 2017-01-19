@@ -16,15 +16,15 @@ resources:
 
 ################################
 
-# Docker Image
-  - name: img-sample-gcr
-    type: image
-    integration: avi-beta-gcr
-    pointer:
-      sourceName: gcr.io/shipbeta/sample_node_ayeaye
-      isPull: false
-    seed:
-      versionName: master.1
+## Docker Image
+#  - name: img-sample-gcr
+#    type: image
+#    integration: avi-beta-gcr
+#    pointer:
+#      sourceName: gcr.io/shipbeta/sample_node_ayeaye
+#      isPull: false
+#    seed:
+#      versionName: master.1
 
 #################################
 #
