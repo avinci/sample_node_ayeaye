@@ -6,13 +6,13 @@ resources:
 
 # add infrastructure resources
 
-# add env - GKE cluster TEST
-  - name: env-gke
-    type: cluster
-    integration: avi-dr-gce
-    pointer:
-      sourceName : "test"
-      region: "us-west1-b"
+## add env - GKE cluster TEST
+#  - name: env-gke
+#    type: cluster
+#    integration: avi-dr-gce
+#    pointer:
+#      sourceName : "test"
+#      region: "us-west1-b"
 
 ################################
 
@@ -26,64 +26,64 @@ resources:
     seed:
       versionName: master.1
 
-################################
-
-# TEST resources
-
-# Docker Image Options
-  - name: img-opts-sample-test-gke
-    type: dockerOptions
-    version:
-      memory: 64
-      cpuShares: 128
-      portMappings:
-        - 8080:8080
-      publishAllPorts : true
-      labels:
-        env: test
-        app: sample_node_ayeaye
-
-# env vars for Test
-  - name: params-sample-test-gke
-    type: params
-    version:
-      params:
-        ENVIRONMENT: "TEST"
-        PORT: 8080
-
-################################
-
-# set service version seed
-  - name: ver-sample-gke
-    type: version
-    seed:
-      versionName: "1.0.0"
-
-################################
-
-# PROD resources
-
-# Docker Image Options
-  - name: img-opts-sample-prod-gke
-    type: dockerOptions
-    version:
-      memory: 64
-      cpuShares: 128
-      labels:
-        env: prod
-
-# env vars for Prod
-  - name: params-sample-prod-gke
-    type: params
-    version:
-      params:
-        ENVIRONMENT: "PROD"
-        PORT: 80
-
-# PROD replica controller
-  - name: replicas-sample-prod-gke
-    type: replicas
-    version:
-      count: 2
-
-# ################################
+#################################
+#
+## TEST resources
+#
+## Docker Image Options
+#  - name: img-opts-sample-test-gke
+#    type: dockerOptions
+#    version:
+#      memory: 64
+#      cpuShares: 128
+#      portMappings:
+#        - 8080:8080
+#      publishAllPorts : true
+#      labels:
+#        env: test
+#        app: sample_node_ayeaye
+#
+## env vars for Test
+#  - name: params-sample-test-gke
+#    type: params
+#    version:
+#      params:
+#        ENVIRONMENT: "TEST"
+#        PORT: 8080
+#
+#################################
+#
+## set service version seed
+#  - name: ver-sample-gke
+#    type: version
+#    seed:
+#      versionName: "1.0.0"
+#
+#################################
+#
+## PROD resources
+#
+## Docker Image Options
+#  - name: img-opts-sample-prod-gke
+#    type: dockerOptions
+#    version:
+#      memory: 64
+#      cpuShares: 128
+#      labels:
+#        env: prod
+#
+## env vars for Prod
+#  - name: params-sample-prod-gke
+#    type: params
+#    version:
+#      params:
+#        ENVIRONMENT: "PROD"
+#        PORT: 80
+#
+## PROD replica controller
+#  - name: replicas-sample-prod-gke
+#    type: replicas
+#    version:
+#      count: 2
+#
+## ################################

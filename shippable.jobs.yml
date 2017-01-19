@@ -6,42 +6,42 @@ jobs:
 
 # add pipeline workflow
 
-# manifest gen for VISUALIZER
-  - name: man-sample-gke
-    type: manifest
-    steps:
-      - IN: img-sample-gcr
-      - IN: img-opts-sample-test-gke
-      - TASK: managed
-
-# TEST deployment to Amazon ECS
-  - name: gke-deploy-test-sample
-    type: deploy
-    steps:
-      - IN: man-sample-gke
-      - IN: params-sample-test-gke
-      - IN: env-gke
-      - TASK: managed
-
-# Create release for PROD
-  - name: release-sample-gke
-    type: release
-    steps:
-      - IN: ver-sample-gke
-        switch: off
-      - IN: gke-deploy-test-sample
-        switch: off
-      - IN: trigger-release-prod-gke
-      - TASK:   managed
-        bump: patch
-
-# PROD deployment to Amazon ECS
-  - name: gke-deploy-prod-sample
-    type: deploy
-    steps:
-      - IN: release-sample-gke
-      - IN: img-opts-sample-prod-gke
-      - IN: params-sample-prod-gke
-      - IN: replicas-sample-prod-gke
-      - IN: env-gke
-      - TASK: managed
+## manifest gen for VISUALIZER
+#  - name: man-sample-gke
+#    type: manifest
+#    steps:
+#      - IN: img-sample-gcr
+#      - IN: img-opts-sample-test-gke
+#      - TASK: managed
+#
+## TEST deployment to Amazon ECS
+#  - name: gke-deploy-test-sample
+#    type: deploy
+#    steps:
+#      - IN: man-sample-gke
+#      - IN: params-sample-test-gke
+#      - IN: env-gke
+#      - TASK: managed
+#
+## Create release for PROD
+#  - name: release-sample-gke
+#    type: release
+#    steps:
+#      - IN: ver-sample-gke
+#        switch: off
+#      - IN: gke-deploy-test-sample
+#        switch: off
+#      - IN: trigger-release-prod-gke
+#      - TASK:   managed
+#        bump: patch
+#
+## PROD deployment to Amazon ECS
+#  - name: gke-deploy-prod-sample
+#    type: deploy
+#    steps:
+#      - IN: release-sample-gke
+#      - IN: img-opts-sample-prod-gke
+#      - IN: params-sample-prod-gke
+#      - IN: replicas-sample-prod-gke
+#      - IN: env-gke
+#      - TASK: managed
