@@ -21,7 +21,7 @@ build:
 
 integrations:
   hub:
-    - integrationName: avi-dr-gce
+    - integrationName: avi-beta-gcr
       type: gcr
 
 #  notifications:
