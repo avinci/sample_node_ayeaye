@@ -33,6 +33,21 @@
         <img src="public/resources/images/captain.png" alt="aye-aye">
         <h2>Aye Aye, Captain!</h2>
         <h3>You have successfully deployed the Docker Image of this NodeJS test app to <%= environment %> </h3>
+        <div id="nameGreeting">Loading greeting...</div>
+
+        <div class="name-form">
+          <div class="row">
+            <div class="col-lg-3 col-lg-offset-2">
+              <input id="firstNameInput" class="form-control" placeholder="First Name">
+            </div>
+            <div class="col-lg-3">
+              <input id="lastNameInput" class="form-control" placeholder="Last Name">
+            </div>
+            <div class="col-lg-2">
+              <button id="nameUpdate" class="btn btn-default form-control" disabled>Update</button>
+            </div>
+          </div>
+        </div>
       </div>
     </main>
 
@@ -41,5 +56,6 @@
    <!-- Placed at the end of the document so the pages load faster -->
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
    <script src="public/resources/js/bootstrap.min.js"></script>
+    <script src="public/resources/js/api.js"></script>
   </body>
 </html>

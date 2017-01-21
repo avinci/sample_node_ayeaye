@@ -3,7 +3,9 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node ./bin/www",
+    "test": "mocha --recursive \"tests/**/*.spec.js\"",
+    "coverage": "istanbul --include-all-sources cover -root \"routes\" --dir shippable/coveragereports node_modules/mocha/bin/_mocha -- --recursive \"tests/**/*.spec.js\" > shippable/testreports"
   },
   "dependencies": {
     "body-parser": "~1.13.2",
@@ -11,7 +13,11 @@
     "debug": "~2.2.0",
     "ejs": "~2.3.3",
     "express": "~4.13.1",
+    "ip": "^1.1.4",
+    "istanbul": "^0.4.5",
+    "mocha": "^3.2.0",
     "morgan": "~1.6.1",
-    "serve-favicon": "~2.3.0"
+    "serve-favicon": "~2.3.0",
+    "supertest": "^2.0.1"
   }
 }
