@@ -9,17 +9,19 @@ env:
   global:
     - REPO=sample_node_ayeaye
     - GOOGLE_GCR_URL=gcr.io/shipbeta # gcr.io/{project name}
+    - TEST_RESULTS_DIR=shippable/testresults
+    - CODE_COVERAGE_DIR=shippable/codecoverage
   matrix:
     - TEST=test_1.sh
     - TEST=test_2.sh
-
 
 build:
   ci:
     #- npm install
     #- npm test
     #- npm run coverage
-    - echo $TEST
+    - printenv
+    
 
   post_ci:
     #- docker build -t $GOOGLE_GCR_URL/$REPO:$BRANCH.$BUILD_NUMBER .
