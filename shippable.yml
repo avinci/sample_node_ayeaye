@@ -12,6 +12,7 @@ env:
     - TEST_RESULTS_DIR=$SHIPPABLE_REPO_DIR/shippable/testresults
     - CODE_COVERAGE_DIR=$SHIPPABLE_REPO_DIR/shippable/codecoverage
     - TESTS_LOC_DIR=$SHIPPABLE_REPO_DIR/tests
+    - MOD_LOC=$SHIPPABLE_REPO_DIR/node_modules/.bin/
   matrix:
     - TEST_FILE=index.spec.js
     - TEST_FILE=name.spec.js
@@ -23,9 +24,9 @@ build:
     #- npm run coverage
     - mkdir -p $TEST_RESULTS_DIR && mkdir -p $CODE_COVERAGE_DIR
     - pushd $TESTS_LOC_DIR
-    - mocha $TEST_FILE -R mocha-junit-reporter --reporter-options mochaFile=$TEST_RESULTS_DIR/testresults.xml
-    - istanbul cover _mocha $TEST_FILE
-    - istanbul report cobertura --dir $CODE_COVERAGE_DIR
+    - $MOD_LOC/mocha $TEST_FILE -R mocha-junit-reporter --reporter-options mochaFile=$TEST_RESULTS_DIR/testresults.xml
+    - $MOD_LOC/istanbul cover _mocha $TEST_FILE
+    - $MOD_LOC/istanbul report cobertura --dir $CODE_COVERAGE_DIR
     - ls -al $TEST_RESULTS_DIR
     - ls -al $CODE_COVERAGE_DIR
 
