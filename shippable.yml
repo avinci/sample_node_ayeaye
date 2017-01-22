@@ -9,18 +9,25 @@ env:
   global:
     - REPO=sample_node_ayeaye
     - GOOGLE_GCR_URL=gcr.io/shipbeta # gcr.io/{project name}
-    - TEST_RESULTS_DIR=shippable/testresults
-    - CODE_COVERAGE_DIR=shippable/codecoverage
+    - TEST_RESULTS_DIR=$SHIPPABLE_REPO_DIR/shippable/testresults
+    - CODE_COVERAGE_DIR=$SHIPPABLE_REPO_DIR/shippable/codecoverage
+    - TESTS_LOC_DIR=$SHIPPABLE_REPO_DIR/tests
   matrix:
-    - TEST=test_1.sh
-    - TEST=test_2.sh
+    - TEST_FILE=index.spec.js
+    - TEST_FILE=name.spec.js
 
 build:
   ci:
-    #- npm install
+    - npm install
     #- npm test
     #- npm run coverage
-    - printenv
+    - mkdir -p $TEST_RESULTS_DIR && mkdir -p $CODE_COVERAGE_DIR
+    - pushd $TESTS_LOC_DIR
+    - mocha $TEST_FILE -R mocha-junit-reporter --reporter-options mochaFile=$TEST_RESULTS_DIR/testresults.xml
+    - istanbul cover _mocha $TEST_FILE
+    - istanbul report cobertura --dir $CODE_COVERAGE_DIR
+    - ls -al $TEST_RESULTS_DIR
+    - ls -al $CODE_COVERAGE_DIR
 
   post_ci:
     #- docker build -t $GOOGLE_GCR_URL/$REPO:$BRANCH.$BUILD_NUMBER .
