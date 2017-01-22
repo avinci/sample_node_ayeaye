@@ -14,7 +14,7 @@ build:
   ci:
     - npm install
     - npm test
-    - npm coverage
+    - npm run coverage
 
   post_ci:
     - docker build -t $GOOGLE_GCR_URL/$REPO:$BRANCH.$BUILD_NUMBER .
