@@ -5,7 +5,7 @@
   "scripts": {
     "start": "node ./bin/www",
     "test": "mocha --recursive \"tests/**/*.spec.js\"",
-    "coverage": "istanbul --include-all-sources cover -root \"routes\" --dir shippable/coveragereports node_modules/mocha/bin/_mocha -- -R spec-xunit-file --recursive \"tests/**/*.spec.js\" && mv xunit.xml shippable/testreports/"
+    "coverage": "istanbul --include-all-sources cover -root \"routes\" --dir shippable/codecoverage node_modules/mocha/bin/_mocha -- -R spec-xunit-file --recursive \"tests/**/*.spec.js\" && mv xunit.xml shippable/testresults/"
   },
   "dependencies": {
     "body-parser": "~1.13.2",
