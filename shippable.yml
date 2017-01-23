@@ -16,6 +16,8 @@ env:
   matrix:
     - TEST_FILE=index.spec.js
     - TEST_FILE=name.spec.js
+    - TEST_FILE=properties.spec.js
+    - TEST_FILE=users.spec.js
 
 build:
   ci:
@@ -27,8 +29,7 @@ build:
     - $MOD_LOC/mocha $TEST_FILE -R mocha-junit-reporter --reporter-options mochaFile=$TEST_RESULTS_DIR/testresults.xml
     - $MOD_LOC/istanbul cover _mocha $TEST_FILE
     - $MOD_LOC/istanbul report cobertura --dir $CODE_COVERAGE_DIR
-    - ls -al $TEST_RESULTS_DIR
-    - ls -al $CODE_COVERAGE_DIR
+    - popd
 
   post_ci:
     #- docker build -t $GOOGLE_GCR_URL/$REPO:$BRANCH.$BUILD_NUMBER .
