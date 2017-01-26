@@ -35,7 +35,7 @@ build:
   post_ci:
     - docker build -t $GOOGLE_GCR_URL/$REPO:$BRANCH.$BUILD_NUMBER .
 
-     Push to GCR.io
+    # Push to GCR.io
     - docker push $GOOGLE_GCR_URL/$REPO:$BRANCH.$BUILD_NUMBER
 
 integrations:
