@@ -45,3 +45,14 @@ jobs:
 #      - IN: replicas-sample-prod-gke
 #      - IN: env-gke
 #      - TASK: managed
+
+  - name: test
+    type: runSh
+    steps:
+      - TASK:
+        - script: docker --version
+        - script: exit 99
+    on_success:
+      - script: echo 'succeeded'
+    on_failure:
+      - script: echo 'failed'
